@@ -1,6 +1,7 @@
 import React, { useCallback, useLayoutEffect } from 'react'
 import ReactFlow, {
   Connection,
+  Controls,
   Edge,
   addEdge,
   useEdgesState,
@@ -8,6 +9,7 @@ import ReactFlow, {
 } from 'reactflow'
 import { transformedData } from './data'
 import { getLayoutedElements } from './getLayoutedElements'
+import 'reactflow/dist/style.css'
 
 const MyGraph = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState<any>([])
@@ -16,6 +18,7 @@ const MyGraph = () => {
     (params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)),
     []
   )
+
   const onLayout = useCallback(() => {
     const opts = {
       'elk.algorithm': 'layered',
@@ -25,6 +28,16 @@ const MyGraph = () => {
       'elk.layered.nodePlacement.bk.edgeStraightening': 'IMPROVE_STRAIGHTNESS',
       'elk.direction': 'RIGHT'
     }
+    const mewNodes = transformedData.transformedNodes.map((el) => {
+      return {
+        id: el.id,
+        data: { label: el.id },
+        position: {
+          x: 0,
+          y: 0
+        }
+      }
+    })
     const ns = transformedData.transformedNodes
     const es = transformedData.transformedEdges
     getLayoutedElements(ns, es, opts).then((graph) => {
@@ -49,7 +62,9 @@ const MyGraph = () => {
       onEdgesChange={onEdgesChange}
       onNodesChange={onNodesChange}
       proOptions={{ account: 'paid-pro', hideAttribution: true }}
-    />
+    >
+      <Controls position={'bottom-right'} showInteractive={false}></Controls>
+    </ReactFlow>
   )
 }
 
