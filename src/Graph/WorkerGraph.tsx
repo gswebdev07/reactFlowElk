@@ -13,6 +13,7 @@ import ReactFlow, {
   useReactFlow
 } from 'reactflow'
 import 'reactflow/dist/style.css'
+
 import { transformedData } from './data'
 
 const WorkerGraph: React.FC = () => {
@@ -82,7 +83,7 @@ const WorkerGraph: React.FC = () => {
       onEdgesChange={onEdgesChange}
       onNodesChange={onNodesChange}
       proOptions={{ account: 'paid-pro', hideAttribution: true }}
-    ></ReactFlow>
+    />
   )
 }
 
