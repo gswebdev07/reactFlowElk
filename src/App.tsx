@@ -42,7 +42,9 @@ function App() {
           </li>
         </ul>
       </nav>
-      <div style={{ height: '800px' }}>
+      <div
+        style={{ height: '700px', border: '10px solid #777', margin: '10px' }}
+      >
         <RouterProvider router={router} />
       </div>
     </div>
