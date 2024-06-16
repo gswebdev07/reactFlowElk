@@ -23,21 +23,10 @@ const MyGraph = () => {
     const opts = {
       'elk.algorithm': 'layered',
       'elk.layered.spacing.nodeNodeBetweenLayers': '150', // Adjust the spacing between layers
-      'elk.spacing.nodeNode': '100', // Adjust the spacing between nodes on the same layer
-      'elk.layered.nodePlacement.strategy': 'BRANDES_KOEPF',
-      'elk.layered.nodePlacement.bk.edgeStraightening': 'IMPROVE_STRAIGHTNESS',
-      'elk.direction': 'RIGHT'
+      'elk.spacing.nodeNode': '120', // Adjust the spacing between nodes on the same layer
+      'elk.layered.nodePlacement.strategy': 'NETWORK_SIMPLEX',
+      'elk.direction': 'DOWN'
     }
-    const mewNodes = transformedData.transformedNodes.map((el) => {
-      return {
-        id: el.id,
-        data: { label: el.id },
-        position: {
-          x: 0,
-          y: 0
-        }
-      }
-    })
     const ns = transformedData.transformedNodes
     const es = transformedData.transformedEdges
     getLayoutedElements(ns, es, opts).then((graph) => {
