@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ReactFlowProvider } from 'reactflow'
 import MyGraph from './Graph/MyGraph'
 import WorkerGraph from './Graph/WorkerGraph'
+import { DisplayGraph } from './Graph/DisplayGraph'
+import CytoscapeGraph from './Graph/Cytoscape'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
         <WorkerGraph />
       </ReactFlowProvider>
     )
+  },
+  {
+    path: '/cytoscape',
+    element: <CytoscapeGraph />
+  },
+  {
+    path: '/sigma',
+    element: <DisplayGraph />
   }
 ])
 function App() {
@@ -39,6 +49,12 @@ function App() {
           </li>
           <li>
             <a href="/workerLoader">Worker Loader</a>
+          </li>
+          <li>
+            <a href="/sigma">Sigma Js</a>
+          </li>
+          <li>
+            <a href="/cytoscape">Cytoscape</a>
           </li>
         </ul>
       </nav>
